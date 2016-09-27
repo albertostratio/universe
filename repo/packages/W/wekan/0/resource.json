@@ -1,0 +1,14 @@
+{
+  "images": {
+    "icon-small": "https://pbs.twimg.com/profile_images/641959225325932544/-NNP9RC0_normal.png",
+    "icon-medium": "https://transifex.s3.amazonaws.com/mugshots/eea74fa3b5.png",
+    "icon-large": "https://git.cloudron.io/cloudron/wekan-app/avatar"
+  },
+  "assets": {
+    "container": {
+      "docker": {
+        "wekan-docker": "wekan:0.11.0-rc2"
+      }
+    }
+  }
+}
