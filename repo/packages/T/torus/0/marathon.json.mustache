@@ -1,0 +1,73 @@
+{
+  "id": "{{service.name}}",
+  "cpus": {{torus.cpus}},
+  "mem": {{torus.mem}},
+  "instances": 1,
+  "env": {
+    "ETCD_HOST": "{{etcd.location}}",
+    "STORAGE_SIZE": "{{storage.size}}",
+    "LISTEN_HOST": "$HOST",
+    "AUTO_JOIN": "{{etcd.auto_join}}",
+    "DEBUG_INIT": "{{etcd.debug_init}}",
+    "DROP_MOUNT_BIN": "{{etcd.drop_mount_bin}}"
+  },
+  "container": {
+    "type": "DOCKER",
+    "volumes": [{
+      "containerPath": "data",
+      {{^storage.persistence.enable}}
+      "hostPath": "{{storage.host_volume}}/{{service.name}}",
+      {{/storage.persistence.enable}}
+      {{#storage.persistence.enable}}
+      "persistent": {
+        "size": {{storage.persistence.volume_size}}
+      },
+      {{/storage.persistence.enable}}
+      "mode": "RW"
+    }],
+    "docker": {
+      "image": "{{resource.assets.container.docker.torus-docker}}",
+      "forcePullImage": false,
+      "network": "BRIDGE",
+      "portMappings": [
+      {
+        "containerPort": "{{networking.port}}",
+          "hostPort": 0,
+          "protocol": "tcp",
+          "name": "{{service.name}}",
+          "labels": {
+            "VIP_0": "/{{service.name}}:{{networking.port}}"
+          }
+      },
+      {
+        "containerPort": "{{networking.http_port}}",
+          "hostPort": 0,
+          {{#networking.external_access.enable}}
+          "servicePort": {{networking.external_access.external_port}},
+          {{/networking.external_access.enable}}
+          "protocol": "tcp",
+          "name": "{{service.name}}-http",
+          "labels": {
+            "VIP_0": "/{{service.name}}-http:{{networking.port}}"
+          }
+      },
+      ]
+    }
+  },
+  "healthChecks": [{
+    "protocol": "TCP",
+    "gracePeriodSeconds": 300,
+    "intervalSeconds": 10,
+    "timeoutSeconds": 10,
+    "maxConsecutiveFailures": 3,
+    "portIndex": 0
+  }],
+  "labels": {
+    "DCOS_PACKAGE_VERSION": "0.1.2-0.1",
+    "DCOS_SERVICE_NAME": "{{service.name}}",
+    {{#networking.external_access.enable}}
+    "HAPROXY_GROUP": "external",
+    {{/networking.external_access.enable}}
+    "DCOS_PACKAGE_IS_FRAMEWORK": "false"
+  }
+}

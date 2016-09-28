@@ -1,0 +1,20 @@
+{
+  "packagingVersion": "3.0",
+  "minDcosReleaseVersion": "1.7",
+  "name": "torus",
+  "version": "0.1.2-0.1",
+  "scm": "https://github.com/coreos/torus",
+  "maintainer": "support@mesosphere.io",
+  "website": "https://github.com/coreos/torus",
+  "description": "Torus is an open source project for distributed storage coordinated through etcd.\n\nTorus provides a resource pool and basic file primitives from a set of daemons running atop multiple nodes. These primitives are made consistent by being append-only and coordinated by etcd. From these primitives, a Torus server can support multiple types of volumes, the semantics of which can be broken into subprojects. It ships with a simple block-device volume plugin, but is extensible to more.",
+  "tags": ["storage", "torus"],
+  "preInstallNotes": "WARNING: Torus on DCOS is currently EXPERIMENTAL. There may be bugs, incomplete features, incorrect documentation, or other discrepancies.\n\nTorus requires a working ETCD to work. Consider using the DC/OS etcd package for creating it.",
+  "postInstallNotes": "Torus has been installed.",
+  "postUninstallNotes": "Torus has been uninstalled.",
+  "licenses": [
+    {
+      "name": "Apache license",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ]
+}

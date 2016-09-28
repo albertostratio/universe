@@ -1,0 +1,9 @@
+{
+  "assets": {
+    "container": {
+      "docker": {
+        "torus-docker": "quay.io/coreos/torus:0.1.2"
+      }
+    }
+  }
+}
