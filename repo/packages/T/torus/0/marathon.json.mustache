@@ -48,7 +48,7 @@
           "protocol": "tcp",
           "name": "{{service.name}}-http",
           "labels": {
-            "VIP_0": "/{{service.name}}-http:{{networking.port}}"
+            "VIP_0": "/{{service.name}}-http:{{networking.http_port}}"
           }
       },
       ]

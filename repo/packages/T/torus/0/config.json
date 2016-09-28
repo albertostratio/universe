@@ -41,7 +41,7 @@
         "location": {
           "description": "Location of the etcd service to be used.",
           "type": "string",
-          "default": "etcd"
+          "default": "etcd.mesos"
         },
         "auto_join": {
           "description": "Auto join the service.",
