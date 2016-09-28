@@ -9,7 +9,9 @@
     "LISTEN_HOST": "$HOST",
     "AUTO_JOIN": "{{etcd.auto_join}}",
     "DEBUG_INIT": "{{etcd.debug_init}}",
-    "DROP_MOUNT_BIN": "{{etcd.drop_mount_bin}}"
+    "DROP_MOUNT_BIN": "{{etcd.drop_mount_bin}}",
+    "LISTEN_HTTP_PORT": "{{networking.http_port}}",
+    "PEER_ADDRESS": "{{service.name}}:{{networking.port}}"
   },
   "container": {
     "type": "DOCKER",
