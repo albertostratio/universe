@@ -39,7 +39,7 @@
       "description": "Wekan storage configuration properties",
       "properties":{    
         "host_volume": {
-          "description": "The location of a volume on the host to be used for persisting Wekan data. The final location will be derived from this value plus the name set in `name` (e.g. `/mnt/host_volume/mysql`). This can be a mounted NFS drive. Note that this path must be the same on all DC/OS agents.",
+          "description": "The location of a volume on the host to be used for persisting Wekan data. This does not include the data stored in the external MongoDB database. The final location will be derived from this value plus the name set in `name` (e.g. `/mnt/host_volume/mysql`). This can be a mounted NFS drive. Note that this path must be the same on all DC/OS agents.",
           "type": "string",
           "default": "/tmp"
         },
@@ -53,15 +53,16 @@
               "default": false                    
             },
             "volume_size": {
-              "description": "If a new volume is to be created, this controls its size in MBs. Defaults to 64MBs",
+              "description": "If a new volume is to be created, this controls its size in MBs.",
               "type": "number",
-              "default": 256
+              "default": 64
             }
           }
         },
         "mongodb":{
-          "description": "URL of a MongoDB node to connect to. If left blank, local storage will be used.",
-          "type": "string"
+          "description": "URL of a MongoDB database to connect to.",
+          "type": "string",
+          "default": "mongodb://mongodb.marathon.l4lb.thisdcos.directory"
         }
       }
     },
@@ -69,10 +70,6 @@
       "type": "object",
       "description": "Wekan networking configuration properties",
       "properties": {    
-        "root_url": {
-          "description": "URL used to generate absolute paths in the application.",
-          "type": "string"
-        },
         "external_access": {
           "type": "object",
           "description": "Enable access from outside the cluster through Marathon-LB.\nNOTE: this connection is unencrypted.",
