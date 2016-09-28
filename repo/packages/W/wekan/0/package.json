@@ -9,7 +9,7 @@
   "description": "The open-source Trello-like kanban.",
   "tags": ["kanban", "project", "collaboration"],
   "preInstallNotes": "In order for Wekan service to start successfully it requires atleast 0.3 CPU and 512MB of RAM. WARNING: Wekan on DCOS is currently EXPERIMENTAL. There may be bugs, incomplete\nfeatures, incorrect documentation, or other discrepancies.\n\nIf you didn't provide a value for `host_volume` in the CLI,\nYOUR DATA WILL NOT BE SAVED IN ANY WAY.\nThis package can create local persistent volumes for the database files to survive across restarts or failures. The parameter `host_volume` controls the path in the host in which these volumes will be created, which can be an NFS-mounted share.\nIf the `external_access` installation option is selected, this package will also create an entry in the External Load Balancer for accessing the service from outside of the cluster on port `11201` by default.",
-  "postInstallNotes": "Wekan has been installed.",
+  "postInstallNotes": "Wekan has been installed. You can access Wekan from the Services tab, or in your public node if you selected `external_access` on installation.",
   "postUninstallNotes": "Wekan has been uninstalled. Note that any data persisted to a NFS share still exists and will need to be manually removed.",
   "licenses": [
     {
