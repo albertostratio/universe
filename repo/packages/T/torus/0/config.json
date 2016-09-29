@@ -27,6 +27,12 @@
           "type": "number",
           "default": 256.0,
           "minimum": 256.0
+        },
+        "instances": {
+          "description": "Number of torus nodes to create. Need at least 3 for a quorum.",
+          "type": "number",
+          "default": 3,
+          "minimum": 3          
         }
       },
       "required": [
