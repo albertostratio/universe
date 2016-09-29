@@ -58,7 +58,10 @@
   ],
   "healthChecks": [
   {
-    "protocol": "TCP",
+    "protocol": "COMMAND",
+    "command": {
+      "value": "ps -Aef|grep torusd"
+    },
     "gracePeriodSeconds": 300,
     "intervalSeconds": 10,
     "timeoutSeconds": 10,
