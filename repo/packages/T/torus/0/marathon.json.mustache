@@ -11,7 +11,7 @@
     "DEBUG_INIT": "{{etcd.debug_init}}",
     "LISTEN_HOST": "$HOST",
     "DROP_MOUNT_BIN": "{{etcd.drop_mount_bin}}",
-    "LISTEN_HTTP_PORT": "{{networking.port}}",
+    "LISTEN_HTTP_PORT": "{{networking.http_port}}",
     "PEER_ADDRESS": "http://{{service.name}}.marathon.l4lb.thisdcos.directory:{{networking.port}}"
   },
   "container": {
