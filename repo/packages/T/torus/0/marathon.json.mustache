@@ -12,7 +12,7 @@
     "LISTEN_HOST": "$HOST",
     "DROP_MOUNT_BIN": "{{etcd.drop_mount_bin}}",
     "LISTEN_HTTP_PORT": "{{networking.http_port}}",
-    "PEER_ADDRESS": "http://{{service.name}}-http.marathon.l4lb.thisdcos.directory:{{networking.http_port}}"
+    "PEER_ADDRESS": "http://{{service.name}}.marathon.l4lb.thisdcos.directory:{{networking.port}}"
   },
   "container": {
     "type": "DOCKER",
@@ -38,7 +38,7 @@
   {
     "protocol": "tcp",
     "port": {{networking.http_port}},
-    "labels": {"VIP_1": "/{{service.name}}:{{networking.http_port}}"},
+    "labels": {"VIP_0": "/{{service.name}}:{{networking.http_port}}"},
     {{#networking.external_access.enable}}
     "servicePort": {{networking.external_access.external_port}},
     {{/networking.external_access.enable}}
@@ -47,7 +47,7 @@
   {
     "protocol": "tcp",
     "port": {{networking.port}},
-    "labels": {"VIP_0": "/{{service.name}}:{{networking.port}}"},
+    "labels": {"VIP_1": "/{{service.name}}:{{networking.port}}"},
     "name": "{{service.name}}"
   }
   ],
