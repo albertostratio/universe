@@ -32,27 +32,13 @@
       "network": "HOST"
     }
   },
-  "portDefinitions": [
-  {
+  "portDefinitions": [{
     "protocol": "tcp",
     "port": {{networking.port}},
-    "labels": {
-      "VIP_0": "/{{service.name}}:{{networking.port}}"
-    },
+    "labels": {"VIP_0": "/{{service.name}}:{{networking.port}}"},
     "name": "{{service.name}}"
-  },
-  {
-    "protocol": "tcp",
-    "port": {{networking.http_port}},
-    "labels": {
-      "VIP_1": "/{{service.name}}:{{networking.http_port}}"
-    },
-    {{#networking.external_access.enable}}
-    "servicePort": {{networking.external_access.external_port}},
-    {{/networking.external_access.enable}}
-    "name": "{{service.name}}-http"
-  },
-  ]
+  }],
+  "requirePorts": true,
   "healthChecks": [
   {
     "protocol": "TCP",
