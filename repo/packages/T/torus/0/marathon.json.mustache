@@ -33,7 +33,8 @@
       "network": "HOST"
     }
   },
-  "portDefinitions": [{
+  "portDefinitions": [
+  {
     "protocol": "tcp",
     "port": {{networking.port}},
     "labels": {"VIP_0": "/{{service.name}}:{{networking.port}}"},
@@ -72,6 +73,9 @@
   "labels": {
     "DCOS_PACKAGE_VERSION": "0.1.2-0.1",
     "DCOS_SERVICE_NAME": "{{service.name}}",
+    "DCOS_SERVICE_NAME": "{{service.name}}",
+    "DCOS_SERVICE_SCHEME": "http",
+    "DCOS_SERVICE_PORT_INDEX": "1",
     {{#networking.external_access.enable}}
     "HAPROXY_GROUP": "external",
     {{/networking.external_access.enable}}
