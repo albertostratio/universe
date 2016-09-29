@@ -25,8 +25,8 @@
         "mem": {
           "description": "Memory to allocate to each torus node.",
           "type": "number",
-          "default": 512.0,
-          "minimum": 512.0
+          "default": 256.0,
+          "minimum": 256.0
         }
       },
       "required": [
