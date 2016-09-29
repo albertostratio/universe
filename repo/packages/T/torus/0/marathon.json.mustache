@@ -2,7 +2,7 @@
   "id": "{{service.name}}",
   "cpus": {{torus.cpus}},
   "mem": {{torus.mem}},
-  "disk": {{storage.persistence.volume_size}},
+  "disk": {{storage.reserved_size}},
   "instances": 1,
   "env": {
     "ETCD_HOST": "{{etcd.location}}",
@@ -22,7 +22,7 @@
       {{/storage.persistence.enable}}
       {{#storage.persistence.enable}}
       "persistent": {
-        "size": {{storage.persistence.volume_size}}
+        "size": {{storage.reserved_size}}
       },
       {{/storage.persistence.enable}}
       "mode": "RW"
