@@ -2,7 +2,7 @@
   "assets": {
     "container": {
       "docker": {
-        "torus-docker": "quay.io/coreos/torus:latest"
+        "torus-docker": "quay.io/coreos/torus"
       }
     }
   }
