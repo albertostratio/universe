@@ -62,7 +62,7 @@
         "debug_init": {
           "description": "Debug init.",
           "type": "number",
-          "default": 1
+          "default": 0
         }
       }
     },

@@ -9,6 +9,7 @@
     "STORAGE_SIZE": "{{storage.size}}",
     "AUTO_JOIN": "{{etcd.auto_join}}",
     "DEBUG_INIT": "{{etcd.debug_init}}",
+    "LISTEN_HOST": "$HOST",
     "DROP_MOUNT_BIN": "{{etcd.drop_mount_bin}}",
     "LISTEN_HTTP_PORT": "{{networking.http_port}}",
     "PEER_ADDRESS": "http://{{service.name}}.marathon.l4lb.thisdcos.directory:{{networking.port}}"
@@ -72,7 +73,6 @@
   ],
   "labels": {
     "DCOS_PACKAGE_VERSION": "0.1.2-0.1",
-    "DCOS_SERVICE_NAME": "{{service.name}}",
     "DCOS_SERVICE_NAME": "{{service.name}}",
     "DCOS_SERVICE_SCHEME": "http",
     "DCOS_SERVICE_PORT_INDEX": "1",
