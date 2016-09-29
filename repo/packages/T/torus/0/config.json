@@ -41,7 +41,7 @@
         "location": {
           "description": "Location of the etcd service to be used.",
           "type": "string",
-          "default": "etcd.mesos"
+          "default": "etcd.marathon.l4lb.thisdcos.directory"
         },
         "auto_join": {
           "description": "Auto join the service.",
