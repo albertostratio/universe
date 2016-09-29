@@ -1,4 +1,9 @@
 {
+  "images": {
+    "icon-small": "http://www.rw-designer.com/icon-view/4067.png",
+    "icon-medium": "https://forum.unity3d.com/data/avatars/m/1/1660.jpg?1427716931",
+    "icon-large": "http://www.rw-designer.com/icon-image/4067-256x256x8.png"
+  },
   "assets": {
     "container": {
       "docker": {
