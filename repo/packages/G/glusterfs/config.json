@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "properties": {
+    "service": {
+      "type": "object",
+      "description": "DC/OS service configuration properties",
+      "properties": {
+        "name": {
+          "description": "Name of this service instance",
+          "type": "string",
+          "default": "glusterfs"
+        }
+      }
+    },
+    "glusterfs": {
+      "type": "object",
+      "description": "glusterfs service configuration properties",
+      "properties": {
+        "instances": {
+          "description": "Number of glusterfs nodes in this cluster. Need at least 2 for redundancy.",
+          "type": "number",
+          "default": 2,
+          "minimum": 2          
+        },
+        "max_instances": {
+          "description": "Currently unused (fixed to default value in current version). Maximum number of glusterfs nodes in this cluster. Used for resource reservations.",
+          "type": "number",
+          "default": 16,
+          "minimum": 2,
+          "maximum": 16          
+        },  
+        "cpus": {
+          "description": "CPU shares to allocate to each glusterfs node.",
+          "type": "number",
+          "default": 0.5,
+          "minimum": 0.5
+        },
+        "mem": {
+          "description": "Memory to allocate to each glusterfs node.",
+          "type": "number",
+          "default": 256.0,
+          "minimum": 256.0
+        }
+      },
+      "required": [
+        "cpus",
+        "mem"
+      ]
+    },
+    "storage": {
+      "type": "object",
+      "description": "glusterfs storage configuration properties",
+      "properties":{    
+        "reserved_size": {
+            "description": "Space to be reserved in each cluster node for glusterfs. Accept only offers from cluster nodes with this space available. Should be equal to the sum of all volumes to be reserved.",
+              "type": "number",
+              "default": 2048
+        },
+        "node_size": {
+          "description": "Size of the storage provided by this glusterfs node to the cluster. Equal to the sum of the space provided by the volume files in /var/lib/glusterd.",
+          "type": "number",
+          "default": 1792
+        },
+        "var_size": {
+            "description": "Size in MBs of the storage to be allocated in each cluster node for glusterfs volume data",
+              "type": "number",
+              "default": 1792
+        },
+        "etc_size": {
+            "description": "Size in MBs of the storage to be allocated in each cluster node for glusterfs volume data",
+              "type": "number",
+              "default": 256
+        },                
+        "persistence": {
+          "type": "object",
+          "description": "Enable persistent volume storage.",
+          "properties": {    
+            "enable": {
+              "description": "Enable or disable persistent volume storage.",
+              "type": "boolean",
+              "default": true                    
+            }
+          }
+        },
+        "host_volume": {
+          "description": "For nodes using non-persistent volumes (local volumes), the location of a volume on the host to be used for glusterfs data. The final location will be derived from this value plus the name set in `name` (e.g. `/mnt/host_volume/glusterfs`). This can be a mounted NFS drive. Note that this path must be the same on all DC/OS agents.",
+          "type": "string",
+          "default": "/tmp"
+        }
+      }
+    },
+    "networking": {
+      "type": "object",
+      "description": "glusterfs networking configuration properties",
+      "properties": {    
+        "daemon_port": {
+          "description": "Port number to be used for Gluster daemon communication.",
+          "type": "number",
+          "default": 24007
+        },
+        "management_port": {
+          "description": "Port number to be used for Gluster management communication.",
+          "type": "number",
+          "default": 24008
+        },        
+        "brick_port_start": {
+          "description": "Currently unused (fixed to default value in current version). Each brick for every volume on your host requires it’s own port. For every new brick, one new port will be used starting at this value. If you have one volume with two bricks, you will need to open 49152 – 49153.",
+          "type": "number",
+          "default": 49152
+        },
+        "nfs_port_start": {
+          "description": "Currently unused (fixed to default value in current version). GlusterFS uses an NFS service that requires 3 ports starting with this value. (Default: 38465-38467).",
+          "type": "number",
+          "default": 38465
+        },
+        "external_access": {
+          "type": "object",
+          "description": "Enable access to the http interface from outside the cluster through Marathon-LB.\nNOTE: this connection is unencrypted.",
+            "properties": {    
+              "enable": {
+                "description": "Enable or disable creating a VIP for external http access through a public node running Marathon-LB.",
+                "type": "boolean",
+                "default": false                    
+              },
+              "external_daemon_port": {
+                "description": "For external access, port number to be used for daemon communication in the external Marathon-LB load balancer",
+                "type": "number",
+                "default": 24007
+              },
+              "external_management_port": {
+                "description": "For external access, port number to be used for management communication in the external Marathon-LB load balancer",
+                "type": "number",
+                "default": 24008
+              },
+              "external_brick_port_start": {
+                "description": "For external access, port number to be used as a start for brick communication.",
+                "type": "number",
+                "default": 49152
+              }                            
+            }
+        }
+      }      
+    },
+    "etcd": {
+      "type": "object",
+      "description": "glusterfs etcd configuration properties",
+      "properties":{
+        "location": {
+          "description": "Location of the etcd service to be used.",
+          "type": "string",
+          "default": "etcd.marathon.l4lb.thisdcos.directory"
+        }
+      }
+    }
+  }
+}

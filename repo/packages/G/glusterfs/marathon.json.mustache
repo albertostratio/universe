@@ -1,0 +1,93 @@
+{
+  "id": "{{service.name}}",
+  "cpus": {{glusterfs.cpus}},
+  "mem": {{glusterfs.mem}},
+  "disk": {{storage.reserved_size}},
+  "instances": {{glusterfs.instances}},
+  "env": {
+    "ETCD_HOST": "{{etcd.location}}",
+    "STORAGE_SIZE": "{{storage.size}}"
+  },
+  "container": {
+    "type": "DOCKER",
+    "volumes": [
+    {
+      "containerPath": "var",
+      {{^storage.persistence.enable}}
+      "hostPath": "{{storage.host_volume}}/{{service.name}}_var",
+      {{/storage.persistence.enable}}
+      {{#storage.persistence.enable}}
+      "persistent": {
+        "size": {{storage.var_size}}
+      },
+      {{/storage.persistence.enable}}
+      "mode": "RW"
+    },
+    {
+      "containerPath": "etc",
+      {{^storage.persistence.enable}}
+      "hostPath": "{{storage.host_volume}}/{{service.name}}_etc",
+      {{/storage.persistence.enable}}
+      {{#storage.persistence.enable}}
+      "persistent": {
+        "size": {{storage.etc_size}}
+      },
+      {{/storage.persistence.enable}}
+      "mode": "RW"
+    }
+    ],
+    "docker": {
+      "image": "{{resource.assets.container.docker.glusterfs-docker}}",
+      "forcePullImage": false,
+      "network": "HOST"
+    }
+  },
+  "ports": [
+  {{networking.daemon_port}},
+  {{networking.management_port}},
+  38465,
+  38466,
+  38467,  
+  49152,
+  49153,
+  49154,
+  49155,
+  49156,
+  49157,
+  49158,
+  49159,
+  49160,
+  49161,
+  49162,
+  49163,
+  49164,
+  49165,
+  49165,
+  49166
+  ],
+  "requirePorts": true,
+  "constraints": [
+    [
+      "hostname",
+      "UNIQUE"
+    ]
+  ],
+  "healthChecks": [
+  {
+    "protocol": "TCP",
+    "port": {{networking.management_port}},
+    "gracePeriodSeconds": 300,
+    "intervalSeconds": 10,
+    "timeoutSeconds": 10,
+    "maxConsecutiveFailures": 3
+  }
+  ],
+  "labels": {
+    "DCOS_PACKAGE_VERSION": "3.6-0.1",
+    "DCOS_SERVICE_NAME": "{{service.name}}",
+    {{#networking.external_access.enable}}
+    "HAPROXY_GROUP": "external",
+    {{/networking.external_access.enable}}
+    "DCOS_PACKAGE_IS_FRAMEWORK": "false"
+  }
+}
