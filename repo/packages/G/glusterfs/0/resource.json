@@ -1,0 +1,14 @@
+{
+  "images": {
+    "icon-small": "https://avatars0.githubusercontent.com/gluster?&s=48",
+    "icon-medium": "https://avatars0.githubusercontent.com/gluster?&s=96",
+    "icon-large": "https://avatars0.githubusercontent.com/gluster?&s=256"
+  },
+  "assets": {
+    "container": {
+      "docker": {
+        "glusterfs-docker": "gluster/gluster-centos:latest"
+      }
+    }
+  }
+}
