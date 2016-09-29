@@ -51,18 +51,18 @@
         },
         "auto_join": {
           "description": "Auto join the service.",
-          "type": "number",
-          "default": 1
+          "type": "string",
+          "default": "1"
         },
         "drop_mount_bin": {
           "description": "Drop mount bin.",
-          "type": "number",
-          "default": 0
+          "type": "string",
+          "default": "0"
         },
         "debug_init": {
           "description": "Debug init.",
-          "type": "number",
-          "default": 0
+          "type": "string",
+          "default": "0"
         }
       }
     },
@@ -71,19 +71,19 @@
       "description": "torus storage configuration properties",
       "properties":{    
         "size": {
-          "description": "Size of the storage provided by this node.",
+          "description": "Size of the storage provided by this torus node.",
           "type": "string",
           "default": "1GiB"
+        },
+        "reserved_size": {
+            "description": "Size in MBs of the storage to be allocated in each cluster node for torus",
+              "type": "number",
+              "default": 1024
         },
         "host_volume": {
           "description": "The location of a volume on the host to be used for torus data. The final location will be derived from this value plus the name set in `name` (e.g. `/mnt/host_volume/torus`). This can be a mounted NFS drive. Note that this path must be the same on all DC/OS agents.",
           "type": "string",
           "default": "/tmp"
-        },
-        "reserved_size": {
-            "description": "Size of the storage to be allocated in each node for Torus",
-              "type": "number",
-              "default": 1024
         },
         "persistence": {
           "type": "object",
