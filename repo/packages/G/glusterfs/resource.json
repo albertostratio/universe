@@ -7,7 +7,7 @@
   "assets": {
     "container": {
       "docker": {
-        "torus-docker": "gluster/gluster-centos:latest"
+        "glusterfs-docker": "gluster/gluster-centos:latest"
       }
     }
   }
